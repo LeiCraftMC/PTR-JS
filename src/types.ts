@@ -12,6 +12,7 @@ export type Reference<T> = PublicReference<T> & {
 }
 
 export type PublicReference<T> = T & {
-	get(): T;
-	set(v: T): T;
+	getV(): T;
+	valueOf(): T;
+	setV(v: T): T;
 }
