@@ -3,8 +3,12 @@ import type { Primitive, PublicReference } from "./types";
 import { IS_REF, referenceProxyHandler, VALUE } from "./utils";
 
 export type Reference<T> = PublicReference<T>;
-
+type X = Primitive<Reference<string>>;
 export interface ReferenceConstructor {
+    
+    new <T>(value: T): Reference<Primitive<T>>;
+	<T>(value: T): Reference<Primitive<T>>;
+
 	new <T, P = Primitive<T>>(value: T): Reference<P>;
 	<T, P = Primitive<T>>(value: T): Reference<P>;
 

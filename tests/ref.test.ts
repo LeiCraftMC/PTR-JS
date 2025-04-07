@@ -1,5 +1,5 @@
 import { describe, test, expect } from "bun:test";
-import { Ref } from "ref.js";
+import { Ref, Reference } from "ref.js";
 
 describe("Ref Tests", () => {
 
@@ -17,6 +17,9 @@ describe("Ref Tests", () => {
 
         expect(Ref.isRef(ref)).toBe(true);
         expect(Ref.isRef(true)).toBe(false);
+
+        // check if it is still the same
+        expect(new Ref(ref)).toBe(ref);
     });
 
     test("String Refs", async () => {

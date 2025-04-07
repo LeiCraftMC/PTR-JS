@@ -5,6 +5,7 @@ export type Primitive<T> =
 	T extends number ? number :
 	T extends boolean ? boolean :
 	T extends bigint ? bigint :
+	T extends PublicReference<infer K> ? K :
 	T;
 
 export type PublicReference<T> = T & {
