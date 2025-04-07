@@ -66,6 +66,7 @@ describe("Ref Tests", () => {
 
         expect(ref == false).toBe(true);
         expect(ref == bool).toBe(true);
+        expect(ref == true).toBe(false);
         expect(ref.toString()).toBe(bool.toString());
         expect(ref.valueOf()).toBe(bool.valueOf());
     });
