@@ -61,9 +61,11 @@ describe("Ref Tests", () => {
 
     test("Boolean Refs", async () => {
 
-        const bool = true;
-        const ref = new Ref(bool);
+        const bool = false;
+        const ref: Boolean = new Ref(false);
 
+        expect(ref == false).toBe(true);
+        expect(ref == bool).toBe(true);
         expect(ref.toString()).toBe(bool.toString());
         expect(ref.valueOf()).toBe(bool.valueOf());
     });
@@ -75,6 +77,15 @@ describe("Ref Tests", () => {
 
         arr[4] = 4;
         ref[4] = 4;
+
+        // Test iteration
+        for (const value of ref) {
+            expect(value).toBe(arr[arr.indexOf(value)]);
+        }
+
+        for (const i in ref) {
+            expect(ref[i]).toBe(arr[i]);
+        }
 
         expect(ref.length).toBe(arr.length);
         expect(ref[0]).toBe(arr[0]);
