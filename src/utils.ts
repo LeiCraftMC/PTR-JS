@@ -1,6 +1,7 @@
 import type { Reference } from "./ref";
 
 export const VALUE = Symbol("value");
+export const IS_REF = Symbol("isRef");
 
 export const referenceProxyHandler: ProxyHandler<Reference<any>> = {
 
@@ -22,8 +23,11 @@ export const referenceProxyHandler: ProxyHandler<Reference<any>> = {
     },
 
     get(ref: Reference<any>, prop: any) {
-        if (prop === 'setV') return (v: string) => (ref[VALUE] = v);
-        if (prop === 'getV') return () => ref[VALUE];
+        switch (prop) {
+            case "getV": return () => ref[VALUE];
+            case "setV": return (v: string) => (ref[VALUE] = v);
+            case IS_REF: return true;
+        }
 
         const fn = (ref[VALUE])[prop];
         if (typeof fn === 'function') {

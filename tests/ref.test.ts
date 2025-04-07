@@ -14,6 +14,9 @@ describe("Ref Tests", () => {
 
         expect(ref.getV()).toBe("newValue");
         expect(clone.getV()).toBe("newValue");
+
+        expect(Ref.isRef(ref)).toBe(true);
+        expect(Ref.isRef(true)).toBe(false);
     });
 
     test("String Refs", async () => {
