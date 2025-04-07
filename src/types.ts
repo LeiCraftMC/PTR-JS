@@ -7,12 +7,29 @@ export type Primitive<T> =
 	T extends bigint ? bigint :
 	T;
 
+export type PublicReference<T> = T & {
+
+	/**
+	 * Returns the value of the reference.
+	 * @returns The value of the reference.
+	 */
+	getV(): T;
+
+	/**
+	 * Alias for {@link getV}
+	 */
+	valueOf(): T;
+
+	/**
+	 * Sets the value of the reference.
+	 * @param v The new value.
+	 * @returns The new value.
+	 */
+	setV(v: T): T;
+	
+}
+
 export type Reference<T> = PublicReference<T> & {
 	[VALUE]: T;
 }
 
-export type PublicReference<T> = T & {
-	getV(): T;
-	valueOf(): T;
-	setV(v: T): T;
-}
